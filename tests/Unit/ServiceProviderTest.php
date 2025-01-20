@@ -21,6 +21,24 @@ class ServiceProviderTest extends TestCase
         ];
     }
 
+    protected function defineEnvironment($app)
+    {
+        // Define the test configuration
+        $app['config']->set('epp', [
+            'host' => 'epp.example.com',
+            'port' => 700,
+            'timeout' => 1,
+            'ssl' => true,
+            'username' => 'test-user',
+            'password' => 'test-pass',
+            'ssl_options' => [
+                'verify_peer' => false,
+                'verify_peer_name' => false,
+                'allow_self_signed' => true,
+            ],
+        ]);
+    }
+
     public function testConfigIsLoaded()
     {
         $this->assertNotNull(config('epp'));
