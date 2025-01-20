@@ -9,7 +9,8 @@
         "epp",
         "domain",
         "registry",
-        "registrar"
+        "registrar",
+        "dns"
     ],
     "autoload": {
         "psr-4": {
