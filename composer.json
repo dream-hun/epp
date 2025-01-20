@@ -38,8 +38,8 @@
         "pestphp/pest-plugin-laravel": "^2.3",
         "squizlabs/php_codesniffer": "^3.11.2"
     },
-    "conflict": {
-        "laravel/framework": "<11.0"
+    "provide": {
+        "laravel/framework": "11.38.2"
     },
     "extra": {
         "laravel": {
@@ -78,6 +78,6 @@
         "cs-fix": "Fix code style",
         "analyse": "Run static analysis"
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "prefer-stable": true
 }
