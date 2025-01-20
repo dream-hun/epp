@@ -1,6 +1,7 @@
 {
     "name": "dream-hun/epp",
     "description": "EPP (Extensible Provisioning Protocol) Client Library for Laravel",
+    "version": "2.0.0",
     "type": "library",
     "license": "MIT",
     "keywords": [
@@ -27,6 +28,8 @@
         }
     ],
     "require": {
+        "php": "^8.2",
+        "ext-xml": "*",
         "laravel/framework": "^11.0"
     },
     "require-dev": {
