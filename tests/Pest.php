@@ -1,5 +1,6 @@
 <?php
 
+use DreamHun\EPP\Providers\EPPServiceProvider;
 use Tests\TestCase;
 
 /*
@@ -40,3 +41,17 @@ expect()->extend('toBeOne', function () {
 | global functions to help you to reduce the number of lines of code in your test files.
 |
 */
+
+function getPackageProviders($app)
+{
+    return [
+        EPPServiceProvider::class,
+    ];
+}
+
+function getPackageAliases($app)
+{
+    return [
+        'EPP' => 'DreamHun\EPP\Facades\EPP',
+    ];
+}

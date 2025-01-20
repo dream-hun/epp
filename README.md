@@ -2,6 +2,12 @@
 
 This is a PSR-compliant EPP (Extensible Provisioning Protocol) client library for Laravel applications.
 
+## Requirements
+
+- PHP 8.2 or higher
+- Laravel 10.x or 11.x
+- ext-xml PHP extension
+
 ## Installation
 
 ```bash
@@ -51,58 +57,62 @@ $greeting = EPP::connect();
 $response = EPP::login();
 
 // Check domain availability
-$response = EPP::request('
-    <epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
-        <command>
-            <check>
-                <domain:check xmlns:domain="urn:ietf:params:xml:ns:domain-1.0">
-                    <domain:name>example.com</domain:name>
-                </domain:check>
-            </check>
-        </command>
-    </epp>
-');
+$xml = <<<XML
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<epp xmlns="urn:ietf:params:xml:ns:epp-1.0">
+  <command>
+    <check>
+      <domain:check xmlns:domain="urn:ietf:params:xml:ns:domain-1.0">
+        <domain:name>example.com</domain:name>
+      </domain:check>
+    </check>
+    <clTRID>ABC-12345</clTRID>
+  </command>
+</epp>
+XML;
 
-// Close the connection
-EPP::disconnect();
+$response = EPP::request($xml);
 ```
 
-Or you can inject the Client class using dependency injection:
+## Development
 
-```php
-use DreamHun\EPP\Client;
-
-class DomainController extends Controller
-{
-    public function check(Client $epp)
-    {
-        $epp->connect();
-        $epp->login();
-        
-        $response = $epp->request('... EPP XML ...');
-        
-        $epp->disconnect();
-        
-        return $response;
-    }
-}
-```
-
-## Features
-
-- Full EPP protocol support
-- Laravel integration with config file and facade
-- PSR-4 autoloading compliant
-- Modern PHP 8.1+ syntax
-- Extensible architecture
-- SSL/TLS support with custom certificates
-
-## Testing
+### Testing
 
 ```bash
+# Run all tests
 composer test
+
+# Run tests with coverage report
+composer test:coverage
+```
+
+### Code Style
+
+The package follows PSR-12 coding standards. You can check and fix the code style using:
+
+```bash
+# Check code style
+composer cs
+
+# Fix code style issues
+composer format
+```
+
+### Static Analysis
+
+```bash
+composer analyse
 ```
 
 ## License
 
-MIT License
+This package is open-sourced software licensed under the MIT license.
+
+## Credits
+
+- Author: Jacques MBABAZI
+- Email: mbabazijacques@gmail.com
+
+## Contributing
+
+Thank you for considering contributing to the EPP Client Library! Please feel free to submit a PR.

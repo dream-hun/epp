@@ -14,10 +14,10 @@ class EPPServiceProvider extends ServiceProvider
     {
         // Register the config file
         $this->mergeConfigFrom(
-            __DIR__.'/../../../config/epp.php', 'epp'
+            __DIR__ . '/../../../config/epp.php', 'epp'
         );
 
-        // Register the Client as a singleton
+        // Register the EPP client as a singleton
         $this->app->singleton(Client::class, function ($app) {
             return new Client();
         });
@@ -30,7 +30,7 @@ class EPPServiceProvider extends ServiceProvider
     {
         // Publish the config file
         $this->publishes([
-            __DIR__.'/../../../config/epp.php' => config_path('epp.php'),
+            __DIR__ . '/../../../config/epp.php' => config_path('epp.php'),
         ], 'epp-config');
     }
 }

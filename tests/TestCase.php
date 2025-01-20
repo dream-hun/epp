@@ -2,19 +2,27 @@
 
 namespace Tests;
 
+use DreamHun\EPP\Facades\EPP;
 use DreamHun\EPP\Providers\EPPServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra
 {
-    protected function getPackageProviders($app)
+    protected function getPackageProviders($app): array
     {
         return [
             EPPServiceProvider::class,
         ];
     }
 
-    protected function defineEnvironment($app)
+    protected function getPackageAliases($app): array
+    {
+        return [
+            'EPP' => EPP::class,
+        ];
+    }
+
+    protected function defineEnvironment($app): void
     {
         // Define the test configuration
         $app['config']->set('epp', [

@@ -1,20 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:noNamespaceSchemaLocation="./vendor/phpunit/phpunit/phpunit.xsd"
+         xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
          bootstrap="vendor/autoload.php"
          colors="true"
+         cacheDirectory=".phpunit.cache"
 >
     <testsuites>
+        <testsuite name="Feature">
+            <directory>tests/Feature</directory>
+        </testsuite>
         <testsuite name="Unit">
-            <directory suffix="Test.php">./tests/Unit</directory>
+            <directory>tests/Unit</directory>
         </testsuite>
     </testsuites>
-    <coverage>
+    <source>
         <include>
-            <directory suffix=".php">./src</directory>
+            <directory>src</directory>
         </include>
-    </coverage>
+    </source>
     <php>
         <env name="APP_ENV" value="testing"/>
+        <env name="APP_KEY" value="base64:2fl+Ktvkfl+Fuz4Qp/A75G2RTiWVA/ZoKZvp6fiiM10="/>
+        <env name="EPP_HOST" value="epp.example.com"/>
+        <env name="EPP_PORT" value="700"/>
+        <env name="EPP_USERNAME" value="test-user"/>
+        <env name="EPP_PASSWORD" value="test-pass"/>
     </php>
 </phpunit>
